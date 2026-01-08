@@ -1,0 +1,108 @@
+---
+import GalleryIsland from "../islands/GalleryIsland";
+
+const imageItems = [
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752877798/galery_001_min_ouzbxi.webp",
+        alt: "Imagen de la galería 1",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752877799/galery_001_ap3j3z.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752877791/galery_002_min_sbsl2o.webp",
+        alt: "Imagen de la galería 2",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752877792/galery_002_i8xbpl.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752878526/Mtra.-Patricia-UNAM_min_vbw19d.webp",
+        alt: "Imagen de la Mtra. Patricia UNAM",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752878526/Mtra.-Patricia-UNAM_geavcw.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752878567/galery_003_min_dsjfgn.webp",
+        alt: "Imagen de la galería 3",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752878569/galery_003_hchy1k.webp",
+    },
+
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752879170/panel-transparenciaQA_min_hybkgw.webp",
+        alt: "Imagen del panel de transparencia QA",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752879172/panel-transparenciaQA_jpxvn1.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752879163/galery_004_min_tgvfnk.webp",
+        alt: "Imagen de la galería 4",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752879164/galery_004_scqrj6.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886400/PublicacionIAAS_min_nlc9me.webp",
+        alt: "Imagen de la publicación IAAS",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886401/PublicacionIAAS_hhxkot.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886445/HCafe2_min_gxdorw.webp",
+        alt: "Imagen de HCafé 2",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886447/HCafe2_f6ptbw.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886447/Panel-transparencia1_min_u8tage.webp",
+        alt: "Imagen del panel de transparencia 1",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886449/Panel-transparencia1_f21i0j.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886709/gallery_005_min_mhvr5a.webp",
+        alt: "Imagen de la galería 5",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752886711/gallery_005_fshjgy.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887552/gallery_010_min_s2x4zf.webp",
+        alt: "Imagen de Maribel Ramírez Coronel",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887554/gallery_010_gmxaxb.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887275/gallery_009_min_tmwvju.webp",
+        alt: "Imagen de la galería 9",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887276/gallery_009_bpixy8.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887278/gallery_008_min_aeaxzw.webp",
+        alt: "Imagen de la galería 8",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887279/gallery_008_pew3hq.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887281/gallery_007_min_ogada8.webp",
+        alt: "Imagen de la galería 7",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887282/gallery_007_ghejnn.webp",
+    },
+    {
+        url: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887284/gallery_006_min_ouyxc9.webp",
+        alt: "Imagen de la galería 6",
+        urlBig: "https://res.cloudinary.com/difrqz0ke/image/upload/v1752887285/gallery_006_ndbqyr.webp",
+    },
+    /*
+{
+    url: "",
+    alt: "",
+    urlBig: ""
+    },
+  {
+    url: "",
+    alt: "",
+    urlBig: ""
+  }, */
+];
+
+const sectionStyles = `landing-section bg-bg-gray min-h-screen w-screen flex items-center justify-center pt-24 px-8 relative overflow-y-hidden`;
+---
+
+<!-- <section aria-labelledby="speakers-title" class="py-16 bg-purple"> -->
+<section class={sectionStyles} data-header-color={`bg-gray`} id="galeria">
+    <div class="container mx-auto px-4">
+        <h2
+            id="speakers-title"
+            class="text-celeste-hsi text-4xl font-bold text-center mt-20 md:mt-10 mb-8"
+        >
+            Galería
+        </h2>
+        <GalleryIsland client:only="react" imageItems={imageItems} />
+    </div>
+</section>

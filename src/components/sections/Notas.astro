@@ -1,0 +1,76 @@
+---
+import SpeakerOrganicBg from "../atoms/SpeakerOrganicBg.astro";
+import NotasCard from "../molecules/NotasCard.astro";
+
+import prensa_01 from '../../assets/notas/prensa_01.png';
+import prensa_02 from '../../assets/notas/prensa_02.png';
+import prensa_03 from '../../assets/notas/prensa_03.png';
+import prensa_04 from '../../assets/notas/prensa_04.png';
+import prensa_05 from '../../assets/notas/prensa_05.png';
+
+// Define type for card variants
+interface CardData {
+  // State 1
+  imageSrc: string | ImageMetadata;
+  imageAlt: string;
+  // State 2
+  title: string;
+  underlinedText: string;
+  link?: string; // Optional link for more info
+}
+
+const cardData: CardData[] = [
+  {
+    title: "Infecciones hospitalarias generan pérdidas de 28 mil mdp cada año al sector salud",
+    underlinedText:"Milenio",
+    imageSrc: prensa_01,
+    imageAlt: "Infecciones hospitalarias generan pérdidas de 28 mil mdp cada año al sector salud - Milenio",
+    link:"https://www.milenio.com/videos/politica/infecciones-hospitalarias-generan-perdidas-28-mil-mdp-ano-sector-salud"
+  },
+  {
+    title: "En México no hay incentivos para que hospitales combatan infecciones: expertos",
+    underlinedText:"El Economista",
+    imageSrc: prensa_03,
+    imageAlt: "En México no hay incentivos para que hospitales combatan infecciones: expertos - El Economista",
+    link: "https://www.eleconomista.com.mx/empresas/mexico-hay-incentivos-hospitales-combatan-infecciones-expertos-20241113-734014.html"
+  },
+  {
+    title: "Aumentan infecciones hospitalarias en México post-Covid, urgen medidas preventivas",
+    underlinedText:"Publi Metro",
+    imageSrc: prensa_02,
+    imageAlt: "Aumentan infecciones hospitalarias en México post-Covid, urgen medidas preventivas - Publi Metro",
+    link: "https://www.publimetro.com.mx/noticias/2024/10/30/aumentan-infecciones-hospitalarias-en-mexico-post-covid-urgen-medidas-preventivas/"
+  },
+  {
+    title: "Foro sobre enfermedades intrahospitalarias pondrá el foco en la seguridad sanitaria",
+    underlinedText:"El Economista",
+    imageSrc: prensa_04,
+    imageAlt: "Foro sobre enfermedades intrahospitalarias pondrá el foco en la seguridad sanitaria - El Economista",
+    link: "https://www.eleconomista.com.mx/arteseideas/Foro-sobre-enfermedades-intrahospitalarias-pondra-el-foco-en-la-seguridad-sanitaria-20231023-0028.html"
+  },
+  
+];
+const sectionStyles = `landing-section bg-bg-gray min-h-screen w-screen flex items-center justify-center pt-24 px-4 relative overflow-y-hidden`;
+---
+
+<section
+  class={sectionStyles}
+  data-header-color={`bg-gray`}
+  id='prensa'
+>
+  <div class="container mx-auto px-0">
+    <h2 id="speakers-title" class="text-celeste-hsi text-4xl font-bold text-center mb-24 uppercase">
+      presencia en medios
+    </h2>
+
+    <div
+      class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
+    >
+      {cardData.map((card) => (
+        <NotasCard
+          {...card}
+        />
+      ))}
+    </div>
+  </div>
+</section>

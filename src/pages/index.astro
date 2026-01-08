@@ -1,0 +1,69 @@
+---
+import HeroSection from "../components/HeroSection.astro";
+import LandingHeader from "../components/LandingHeader.astro";
+import QueEs from "../components/sections/QueEs.astro";
+import QueEs2 from "../components/sections/QueEs2.astro";
+import Actualidad from "../components/sections/Actualidad.astro";
+import Actualidad2 from "../components/sections/Actualidad2.astro";
+import Sede from "../components/sections/Sede.astro";
+
+import Layout from "../layouts/Layout.astro";
+import SiteFooter from "../components/molecules/SiteFooter.astro";
+
+import PorqueAsistir from "../components/sections/PorqueAsistir.astro";
+import Speakers from "../components/sections/Speakers.astro";
+import Notas from "../components/sections/Notas.astro";
+import Recursos from "../components/sections/Recursos.astro";
+import Patrocinadores from "../components/sections/Patrocinadores.astro";
+import Agenda from "../components/sections/Agenda.astro";
+import PageFooter from "../components/sections/PageFooter.astro";
+import Video from "../components/sections/Video.astro";
+import SpeakersPaginated from "../components/sections/SpeakersPaginated.astro";
+import Galeria from "../components/sections/Galeria.astro";
+import FloatingWhatsApp from "../components/islands/atoms/FloatingWhatsApp.tsx";
+---
+
+<Layout title="Foro 2025 - Hospital sin infecciones">
+  <LandingHeader />
+
+  <main
+    class="relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+  >
+  <div class="snap-center">
+      <HeroSection />
+    </div>
+
+    <div class="snap-center">
+      <QueEs />
+    </div>
+    <div class="snap-center">
+      <QueEs2 />
+    </div>
+
+    <div class="snap-center">
+      <PorqueAsistir />
+    </div>
+    <div class="snap-center">
+      <Agenda />
+    </div>
+    <div class="snap-center">
+      <SpeakersPaginated />
+    </div>
+    <div class="snap-center">
+      <Notas />
+    </div>
+    <div class="snap-center">
+      <Galeria />
+    </div>
+    <div class="snap-center">
+      <Video />
+    </div>
+    <div class="snap-center">
+      <Patrocinadores />
+    </div>
+    <div class="snap-center">
+      <PageFooter />
+    </div>
+    <FloatingWhatsApp className="bg-green-hsi rounded-full" size={60} positionX="right" positionY="bottom" waNumber="525511355967" client:load/>
+  </main>
+</Layout>

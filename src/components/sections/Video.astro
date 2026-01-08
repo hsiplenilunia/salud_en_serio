@@ -1,0 +1,43 @@
+---
+import YouTubePlayer from "../YouTubePlayer.astro";
+
+
+const videos = [
+  {
+    url: "https://www.youtube.com/embed/TC0DQYV90L0?si=Z4pM9dIIADsZBbDj",
+    title: "Marco Regulatorio de las IAAS y los retos hacia adelante."
+  },
+  {
+    url: "https://www.youtube.com/embed/IicVRMobHyQ?si=v2epdvGcEiFD6KTu",
+    title: "Retos para una colaboración multidisciplinaria en el combate a las IAAS"
+  },
+  {
+    url: "https://www.youtube.com/embed/8wkryABJVtM?si=b-fuDJzXz8OYXiRo",
+    title: "¿Cómo impactan las infecciones en las estancias hospitalarias?"
+  },
+  {
+    url: "https://www.youtube.com/embed/S8XqWrKwY40?si=M8--2C3UdQonq5gn",
+    title: "Recursos para combatir bacterias se vuelven inalcanzables"
+  },
+
+];
+
+const sectionStyles = `landing-section bg-white min-h-screen w-screen flex flex-col items-center justify-center pt-24 px-8 relative overflow-y-hidden pb-8 md:pb-0`;
+---
+
+<!-- <section aria-labelledby="speakers-title" class="py-16 bg-purple"> -->
+<section
+  class={sectionStyles}
+  data-header-color={`white`}
+  id='video'
+>
+<h2 id="speakers-title" class="text-celeste-hsi text-4xl font-bold text-center mt-8 mb-8">
+        Video
+      </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+    {videos.map((video, index) => (
+      <YouTubePlayer  id={`video-${index}`} class="h-full" url={video.url} title={video.title} />
+    ))}
+</div>
+  
+</section>

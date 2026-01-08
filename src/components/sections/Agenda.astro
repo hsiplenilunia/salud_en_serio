@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+import AgendaHeader from "../molecules/AgendaHeader.astro";
+import AgendaTabs from "../molecules/AgendaTabs.astro";
+import AgendaTabsIsland from "../react/AgendaTabsIsland";
+import DescargarAgendaButton from "../atoms/DescargarAgendaButton.astro";
+const sectionStyles = `landing-section bg-bg-gray min-h-screen w-screen flex items-center justify-center pt-24 px-8 relative overflow-y-hidden`;
+---
+
+<section
+  class={sectionStyles}
+  data-header-color={`bg-gray`}
+  id="agenda"
+>
+  <div
+    class="flex flex-col w-full items-center justify-center h-full space-y-8 pt-20 z-10 relative "
+  >
+    <AgendaHeader />
+    <DescargarAgendaButton />
+    
+    <AgendaTabsIsland client:load />
+  </div>
+</section>
+
+

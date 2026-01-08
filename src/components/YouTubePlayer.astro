@@ -1,0 +1,62 @@
+---
+import { useState } from 'react';
+const { id, url, title = "Video de YouTube", class: className = "" } = Astro.props;
+
+function extractVideoId(url) {
+  // Soporta URLs tipo https://youtu.be/ID y https://www.youtube.com/watch?v=ID
+  const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/);
+  return ytMatch ? ytMatch[1] : url;
+}
+
+const videoId = extractVideoId(url);
+const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<div class={`aspect-video w-full max-w-md mx-auto md:mb-4 relative ${className}`}>
+  <div
+    id={`yt-lite-${id}`}
+    class="absolute inset-0 w-full flex items-center justify-center cursor-pointer bg-black/40"
+    style={"background: url('" + thumbnail + "') center/cover no-repeat;"}
+    tabindex="0"
+    role="button"
+    aria-label={`Reproducir video: ${title}`}
+    data-video-id={videoId}
+    data-title={title}
+  >
+    <div class="flex items-center justify-center w-[90px] h-[90px] rounded-full bg-navy">
+      <svg width="64" height="64" fill="white" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ytLite = document.getElementById(`yt-lite-${id}`);
+    
+    if (ytLite) {
+      // Leer los datos desde los atributos data-*
+      const videoId = ytLite.getAttribute('data-video-id');
+      const title = ytLite.getAttribute('data-title');
+      
+      ytLite.addEventListener('click', function () {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'w-full h-full';
+        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+        iframe.title = title;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.frameBorder = '0';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        ytLite.replaceWith(iframe);
+      });
+      
+      ytLite.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          ytLite.click();
+        }
+      });
+    }
+  });
+</script>

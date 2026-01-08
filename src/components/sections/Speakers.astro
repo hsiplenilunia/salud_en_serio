@@ -1,0 +1,90 @@
+---
+import SpeakerOrganicBg from "../atoms/SpeakerOrganicBg.astro";
+import { Image } from 'astro:assets';
+
+import speaker_01 from '../../assets/speakers/speaker_01.png';
+import speaker_02 from '../../assets/speakers/speaker_02.png';
+import speaker_03 from '../../assets/speakers/speaker_03.png';
+import speaker_04 from '../../assets/speakers/speaker_04.png';
+
+const speakers = [
+  {
+    name: "Dra. Claudia Rampazzo",
+    role: "Médica, Sexóloga Clínica y Psicoterapeuta",
+    imgSrc: speaker_01,
+  },
+  {
+    name: "Dra. Mari Mar Álvarez",
+    role: "Cirujano Plástico y Fundadora de Nova House",
+    imgSrc: speaker_02,
+  },
+  {
+    name: "Fernanda Zárate",
+    role: "Sexóloga Clínica y Psicóloga",
+    imgSrc: speaker_03,
+  },
+  {
+    name: "Dra. Edith Cervantes Guerrero",
+    role: "Ginecóloga y Obstetra Especializada en Biología de la Reproducción",
+    imgSrc: speaker_04,
+  },
+  // Add more speakers as needed
+];
+const sectionStyles = `landing-section bg-purple min-h-screen w-screen flex items-center justify-center pt-24 px-8 relative overflow-y-hidden`;
+---
+
+<!-- <section aria-labelledby="speakers-title" class="py-16 bg-purple"> -->
+<section
+  class={sectionStyles}
+  data-header-color={`purple`}
+  id='agenda'
+>
+  <div class="container mx-auto px-4">
+    <h2 id="speakers-title" class="text-apple text-4xl font-bold text-center mb-8">
+      aSPEAKERS <span>Anteriores</span>
+    </h2>
+    
+
+    <div
+      class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-6"
+    >
+      {speakers.map((speaker) => (
+        <div class="relative flex flex-col items-center text-center">
+          <div class="photo-container relative w-[188px] h-[231px] mb-4 flex items-end justify-center">
+            <div class="photo-container__bg absolute inset-0 w-full h-full">
+              <SpeakerOrganicBg class="w-full h-full" />
+            </div>
+            <div class="photo-container__front_layer absolute inset-0 flex items-end justify-center">
+              <figure class="z-10">
+                {typeof speaker.imgSrc === 'object' ? (
+                  <Image
+                    src={speaker.imgSrc}
+                    alt={`Photo of ${speaker.name}`}
+                    class="w-[188px] h-[231px] object-cover mx-auto"
+                    width={188}
+                    height={231}
+                    loading="lazy"
+                  />
+                ) : (
+                  <img
+                    src={speaker.imgSrc}
+                    alt={`Photo of ${speaker.name}`}
+                    class="w-[188px] h-[231px] object-cover mx-auto"
+                    width="188"
+                    height="231"
+                    loading="lazy"
+                  />
+                )}
+              </figure>
+            </div>
+          </div>
+          
+          <div class="relative z-10 px-2">
+            <p class="text-white text-base leading-5 mb-2 font-bold uppercase">{speaker.name}</p>
+            <p class="text-white text-sm leading-5 font-medium uppercase">{speaker.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import logo_amein from '../../assets/patrocinadores/aliados/AMEIN.png';
+import logo_ampe from '../../assets/patrocinadores/aliados/AMPE-Móvil.jpg';
+import logo_asociacion from '../../assets/patrocinadores/aliados/AsociacionMexCalidadenSalud.jpg';
+import logo_colegio from '../../assets/patrocinadores/aliados/ColegioNacionalQuim.png';
+import logo_funsalud from '../../assets/patrocinadores/aliados/FUNSALUD.png';
+import logo_growing from '../../assets/patrocinadores/aliados/Growing-Fundation-Versión-Móvil.png';
+import logo_amimc from '../../assets/patrocinadores/aliados/LOGO-AMIMC.jpg';
+import logo_mexypidn from '../../assets/patrocinadores/aliados/logo-mexYpidn.jpg';
+import logo_sepsismx from '../../assets/patrocinadores/aliados/SepsisMX-Móvil.jpg';
+import logo_somib from '../../assets/patrocinadores/aliados/Somib.png';
+import logo_unursing from '../../assets/patrocinadores/aliados/U-nursign-Versión-Móvil.png';
+import logo_pfizer from '../../assets/patrocinadores/patrocinadores/Pfizer.png';
+import logo_medica_sur from '../../assets/patrocinadores/patrocinadores/Medica Sur.png';
+import logo_biomeriux from '../../assets/patrocinadores/patrocinadores/BIOMERIUX.png';
+import logo_sufacide from '../../assets/patrocinadores/patrocinadores/sufacide.png';
+import logo_tecsalud from '../../assets/patrocinadores/patrocinadores/tecsalud.png';
+import logo_vitalmex from '../../assets/patrocinadores/patrocinadores/vitalmex.webp';
+
+import AliadosIsland from '../islands/AliadosIsland.jsx';
+import PatrocinadoresIsland from '../islands/PatrocinadoresIsland';
+
+const aliados = [
+  { imgUrl: logo_amein, alt: 'AMEIN' },
+  { imgUrl: logo_ampe, alt: 'AMPE' },
+  { imgUrl: logo_asociacion, alt: 'Asociación Mexicana de Calidad en Salud' },
+  { imgUrl: logo_colegio, alt: 'Colegio Nacional Quím.' },
+  { imgUrl: logo_funsalud, alt: 'FUNSALUD' },
+  { imgUrl: logo_growing, alt: 'Growing Fundation' },
+  { imgUrl: logo_amimc, alt: 'AMIMC' },
+  { imgUrl: logo_mexypidn, alt: 'MexYpidn' },
+  { imgUrl: logo_sepsismx, alt: 'SepsisMX' },
+  { imgUrl: logo_somib, alt: 'Somib' },
+  { imgUrl: logo_unursing, alt: 'U-nursing' },
+];
+
+const patrocinadores = [
+  { imgUrl: logo_pfizer, alt: 'Pfizer' },
+  { imgUrl: logo_medica_sur, alt: 'Medica Sur' },
+  { imgUrl: logo_biomeriux, alt: 'BIOMERIUX' },
+  { imgUrl: logo_sufacide, alt: 'Sufacide' },
+  { imgUrl: logo_tecsalud, alt: 'TecSalud' },
+
+];
+
+
+
+const sectionStyles = `landing-section bg-white min-h-screen w-screen flex flex-col items-center justify-center pt-24 px-8 relative overflow-y-hidden pb-8 md:pb-0`;
+---
+
+<!-- <section aria-labelledby="speakers-title" class="py-16 bg-purple"> -->
+<section
+  class={sectionStyles}
+  data-header-color={`white`}
+  id='aliados'
+>
+
+  {patrocinadores.length > 0 && (
+    <div class="container mx-auto px-0 md:px-24">
+      <h2 id="speakers-title" class="text-celeste-hsi text-4xl font-bold text-center mb-8 uppercase">
+        patrocinadores
+      </h2>
+      <PatrocinadoresIsland client:idle />
+      {/* Uncomment the following block if you want to display logos in a grid format */}
+     {/*  <div
+        class="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4"
+      >
+        {patrocinadores.map((aliado) => (
+          <div class="flex w-full min-h-[162px] max-h-[162px] ">
+              <Image 
+              src={aliado.imgUrl}
+              alt={aliado.alt || 'Patrocinador'} 
+              class="object-contain w-full h-full rounded-md" 
+              loading="lazy"
+              width={320}
+              height={162}
+            />
+          </div>
+        ))}
+      </div> */}
+    </div>
+  )}
+
+  {aliados.length > 0 && (
+    <div class="container mt-12 mx-auto px-4">
+      <h2 id="speakers-title" class="text-celeste-hsi text-4xl font-bold text-center mb-8">
+        ALIADOS
+      </h2>
+        <AliadosIsland client:idle />
+      </div>
+  )}
+
+  
+</section>

@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import logoHSI from "../../assets/Logo-HSI-01-768x734.png";
+import vForo from "../../assets/V-Foro.png";
+import heroLogoMobile from "../../assets/hero-logo-mobile.png";
+---
+
+<div class="flex w-full justify-center gap-8">
+    <Image
+        src={vForo}
+        width={82}
+        height={64}
+        alt="Logotipo del evento V Foro HSI 2025"
+        loading="lazy"
+        class="min-w-[84px] w-[84px] h-[64px]"
+    />
+    <div>
+        <h2 class="text-5xl md:text-6xl mb-8">Agenda</h2>
+        <h3 class="text-black-text text-3xl md:text-6xl font-black uppercase">
+            <span class="text-4xl md:text-7xl">F</span>oro 2025
+        </h3>
+        <p class="text-2xl tracking-wider font-bold text-black-text mt-2">
+            25 Y 26 DE SEPTIEMBRE, 2025
+        </p>
+        <p class="text-black-text text-xl font-normal tracking-widest mt-1">
+            Auditorio del <strong class="font-extrabold"
+                >Hospital Médica Sur</strong
+            >
+        </p>
+        <div
+            class="h-1 w-full mt-2 rounded-full bg-gradient-to-r from-gradient-start via-gradient-center to-gradient-end"
+        >
+        </div>
+    </div>
+    <Image
+        src={heroLogoMobile}
+        width={289}
+        height={105}
+        alt="Logotipo principal del Foro HSI para dispositivos móviles"
+        loading="lazy"
+        class="hidden md:block"
+    />
+    <Image
+        src={logoHSI}
+        width={69}
+        height={65}
+        alt="Logotipo institucional HSI"
+        loading="lazy"
+        class="hidden md:block w-[69px] h-[65px]"
+    />
+</div>
