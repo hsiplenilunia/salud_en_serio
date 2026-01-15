@@ -29,7 +29,7 @@ import FloatingWhatsApp from "../components/islands/atoms/FloatingWhatsApp.tsx";
   <main
     class="relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
   >
-  <div class="snap-center">
+    <div class="snap-center">
       <HeroSection />
     </div>
 
@@ -64,6 +64,13 @@ import FloatingWhatsApp from "../components/islands/atoms/FloatingWhatsApp.tsx";
     <div class="snap-center">
       <PageFooter />
     </div>
-    <FloatingWhatsApp className="bg-green-hsi rounded-full" size={60} positionX="right" positionY="bottom" waNumber="525511355967" client:load/>
+    <FloatingWhatsApp
+      className="bg-green-hsi rounded-full"
+      size={60}
+      positionX="right"
+      positionY="bottom"
+      waNumber="525511355967"
+      client:load
+    />
   </main>
 </Layout>

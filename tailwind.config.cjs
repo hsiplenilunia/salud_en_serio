@@ -8,6 +8,7 @@ module.exports = {
 		,
 		extend: {
 			colors: {
+				whitegray: "#F2F2F2",
 				purple: "#7758AC",
 				'purple-text': "#7244B4",
 				apple: "#CCF750",
