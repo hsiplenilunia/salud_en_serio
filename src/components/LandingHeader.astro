@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoHSI from "../assets/Logo-HSI-01-768x734.png";
+import logoHSI from "../assets/LOGO_Salud-en-serio 1.png";
 import HamburguerIcon from "./icons/hamburguerIcon.astro";
 
 import { menu } from "./data/menuData.ts";
@@ -8,7 +8,7 @@ import DownTriangleIcon from "./icons/DownTriangleIcon.astro";
 import MobileMenu from "./MobileMenu.astro";
 
 const headerInitialClasses = `
-  bg-white/40 backdrop-blur-xl fixed top-0 w-full h-[150px] flex items-center justify-between px-6 py-4 z-40 text-white transition-colors duration-300
+  fixed top-0 w-full h-[150px] flex items-center justify-between px-6 py-4 z-40 text-white transition-colors duration-300
 `;
 ---
 
@@ -23,7 +23,7 @@ const headerInitialClasses = `
         alt="HSI Logo"
         width={128}
         height={122}
-        class="h-[122px] w-[128px]"
+        class="h-auto w-[128px]"
         format="webp"
         loading="eager"
         quality={85}
@@ -33,7 +33,7 @@ const headerInitialClasses = `
   </div>
 
   <nav class="hidden xl:block ml-6 text-black-text">
-    <ul class="flex justify-end text-base gap-4 font-medium uppercase">
+    <ul class="flex justify-end text-base gap-12 font-bold uppercase">
       {
         menu.map((item) => (
           <li

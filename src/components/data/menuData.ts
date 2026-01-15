@@ -1,48 +1,21 @@
 export const menu = [
   {
-    name: "Propósito",
-    link: "#que-es",
+    name: "Noticias",
+    link: "#noticias",
   },
   {
-    name: "¿Por qué asistir?",
-    link: "#porque-asistir",
-    className: "w-[120px] text-center", // 👈 Ancho y alineación personalizada
+    name: "¿Quiénes somos?",
+    link: "#quienes-somos",
+    className: "", // 👈 Ancho y alineación personalizada
   },
   {
-    name: "Agenda y Speakers",
-    link: "#agenda",
-    className: "w-[130px] text-center",
+    name: "Capítulos",
+    link: "#capitulos",
   },
+
   {
-    name: "Medios",
-    subOptions: [
-      { name: "Prensa", link: "#prensa" },
-      { name: "Galería", link: "#galeria" },
-      { name: "Video", link: "#video" },
-    ],
+    name: "Contacto",
+    link: "#contacto",
   },
-  {
-    name: "Aliados & patrocinadores",
-    link: "#aliados",
-    className: "w-[180px] text-center", // 👈 Este también en dos líneas
-  },
-  {
-    name: "Foros Anteriores",
-    subOptions: [
-      { name: "2021", link: "https://hospitalsininfecciones.com/foro-abordando-el-desafio-de-las-infecciones-intrahospitalarias" },
-      { name: "2022", link: "https://hospitalsininfecciones.com/foro-infecciones-en-la-atencion-medica-desafios-postpademia" },
-      { name: "2023", link: "https://hospitalsininfecciones.com/abordando-el-desafio-de-las-infecciones-intrahospitalarias" },
-      
-    ],
-  },
-  {
-    name: "Social Media",
-    subOptions: [
-      { name: "Facebook", link: "https://www.facebook.com/HospitalSinInfecciones/" },
-      { name: "X", link: "https://www.facebook.com/HospitalSinInfecciones/" },
-      { name: "LinkedIn", link: "https://www.linkedin.com/company/68233946/admin/dashboard/" },
-      { name: "YouTube", link: "https://www.youtube.com/@hospitalsininfecciones7009" },
-      { name: "WhatsApp", link: "https://api.whatsapp.com/send/?phone=5215511355967&text=%C2%BFPodemos+ayudarte%3F&type=phone_number&app_absent=0" },
-    ],
-  },
+  
 ];
