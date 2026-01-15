@@ -23,8 +23,11 @@ import lcpMobileImage from "../assets/hero-logo-mobile.png";
     <title>{title}</title>
     <link rel="preload" as="image" href={lcpMobileImage.src} />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PKV40R6BR"
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PKV40R6BR"
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -34,59 +37,9 @@ import lcpMobileImage from "../assets/hero-logo-mobile.png";
       gtag("js", new Date());
 
       gtag("config", "G-8PKV40R6BR");
-    </script>
+    </script> -->
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @font-face {
-    font-family: "Geologica";
-    src: url("/src/assets/fonts/Geologica-Thin.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Geologica";
-    src: url("/src/assets/fonts/Geologica-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Geologica";
-    src: url("/src/assets/fonts/Geologica-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Geologica";
-    src: url("/src/assets/fonts/Geologica-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Geologica Auto";
-    src: url("/src/assets/fonts/Geologica_Auto-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Geologica Cursive";
-    src: url("/src/assets/fonts/Geologica_Cursive-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-</style>
