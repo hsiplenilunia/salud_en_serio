@@ -41,7 +41,7 @@ const headerInitialClasses = `
           >
             {item.subOptions ? (
               <div class="relative group">
-                <span class="hover-target nav-link flex justify-center items-center gap-2 px-4 py-2 cursor-pointer hover:text-navy transition-colors text-center">
+                <span class="hover-target nav-link flex justify-center items-center gap-2 px-4 py-2 cursor-pointer hover:text-white transition-colors text-center">
                   {item.name}
                   <DownTriangleIcon />
                 </span>
@@ -85,7 +85,7 @@ const headerInitialClasses = `
             ) : (
               <a
                 href={item.link}
-                class="hover-target nav-link px-4 py-2 flex justify-center items-center gap-2 hover:text-navy transition-colors text-center"
+                class="hover-target nav-link px-4 py-2 flex justify-center items-center gap-2 hover:text-white transition-colors text-center"
               >
                 {item.name}
               </a>
@@ -111,7 +111,7 @@ const headerInitialClasses = `
   <div
     id="menu-backdrop"
     class={`
-    absolute bg-[#00ccf2] rounded-xl
+    absolute bg-[#3422A0]
     translate-x-[var(--left)] translate-y-[var(--top)]
     left-0 top-[0px]
     w-[var(--width)] h-[var(--height)]
