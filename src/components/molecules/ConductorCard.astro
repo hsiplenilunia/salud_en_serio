@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+const { fotoConductor, nombre, texto } = Astro.props;
+const nameStyles = 'text-xl font-bold mt-[22px]';
+const textContainerStyles = 'flex flex-col text-black-text text-base min-w-[45%] max-w-[710px]';
+---
+
+<div
+    class="card flex flex-col md:flex-row items-center md:items-start mb-6 max-w-screen"
+    style="border: 1px solid red;"
+>
+    <div class="flex min-w-[20%] justify-end md:pr-[30px] items-center md:py-0">
+        <Image
+            src={fotoConductor}
+            alt={nombre}
+            width={216}
+            height={239.08}
+            loading="lazy"
+        />
+    </div>
+    <div
+        class="md:pr-[397px] flex flex-col items-center"
+        class={textContainerStyles}
+    >
+        <h2 class={nameStyles}>{nombre}</h2>
+        <p 
+        class="mt-4 mb-[67px] leading-relaxed md:flex md:flex-col" 
+        set:html={texto}
+        >
+            
+        </p>
+    </div>
+</div>
