@@ -1,65 +1,48 @@
 ---
 import { Image } from "astro:assets";
-import pleniluniaLogo from "../../assets/Collage-01-768x439.png";
-import Button from "../Button.astro";
+import maribel from "../../assets/Maribel1.png";
+import jose from "../../assets/Jose1.png";
+import ConductorCard from "../molecules/ConductorCard.astro";
 
 //const sectionStyles = `landing-section bg-purple h-screen w-screen text-center overflow-hidden overflow-y-hidden relative`;
-const sectionStyles = `landing-section bg-bg-gray min-h-screen w-screen flex items-center justify-center pt-24 px-8 relative overflow-y-hidden`;
+const sectionStyles = `landing-section bg-bg-gray min-h-screen w-screen flex items-center justify-center pt-24 relative overflow-y-hidden`;
+const nameStyles = 'text-xl font-bold mt-[22px]';
+const textContainerStyles = 'flex flex-col text-black-text text-base min-w-[45%] max-w-[710px]';
+
+const maribelDescription = `Periodista especializada en asuntos de salud pública e industria de
+            la salud; autora de la columna “Salud y Negocios” del periódico El
+            Economista. Desde 2021 fundó y hoy dirige la Iniciativa Hospitales
+            sin Infecciones enfocada a visibilizar el problema de las
+            infecciones asociadas a la atención de la salud y la resistencia
+            antimicrobiana. Desde 2004 fundó y hoy dirige la plataforma
+            especializada en contenidos de salud femenina Plenilunia.<br /><br
+            />
+
+            Es comentarista sobre temas de salud pública en diferentes medios de
+            comunicación.<br /><br />
+
+            Es titulada en Ciencias de la Comunicación por la Universidad
+            Autónoma Metropolitana (UAM), con Maestría en Administración en
+            Sistemas de Salud en la Facultad de Administración de la UNAM. Se
+            especializó en periodismo de finanzas y negocios cursando varios
+            diplomados.`;
+
+const joseDescription = `Es especialista en políticas públicas de salud con amplia trayectoria en América Latina, donde ha impulsado estrategias que conectan regulación sanitaria y acceso efectivo a la salud.<br><br>
+
+                        Ha construido puentes entre instituciones públicas, sector privado y organismos multilaterales, promoviendo convergencia regulatoria, innovación y sostenibilidad.<br><br>
+
+                        Columnista del periódico mexicano El Economista, integra conocimiento jurídico, de políticas públicas, sanitario y estratégico con visión crítica y transformadora.`;
 ---
 
-<section class={sectionStyles} data-header-color={`bg-gray`} id="que-es">
+<section class={sectionStyles} data-header-color={`bg-gray`} id="quienes-somos">
     <div
-        class="flex flex-col items-center justify-center h-full space-y-8 z-10 relative"
+        class="flex flex-col items-center justify-center md:pl-[116px] mt-[99px] md:h-full md:z-10 md:relative"
     >
-        <div
-            class="text-navy text-4xl text-center font-bold uppercase mt-20 md:mt-0 mb-0 md:mb-0"
-        >
-            <h2>¿QUÉ ES?</h2>
-        </div>
-        <div class="flex flex-col px-[10%] text-black-text">
-            <p class="text-center text-lg">
-                Un foro dirigido a personal de salud, profesionistas y tomadores
-                de decisión involucrados directamente en infecciones
-                hospitalarias y resistencia a los antibióticos, calidad y
-                seguridad del paciente; y todo aquel interesado en el tema.
-            </p>
-        </div>
-        <div class="flex flex-col">
-            <div class="flex mb-6 flex-col md:flex-row">
-                <div
-                    class="flex min-w-[50%] justify-center items-center py-12 md:py-0"
-                >
-                    <Image
-                        src={pleniluniaLogo}
-                        alt="Collage médico y enfermera"
-                        width={750}
-                        loading="lazy"
-                    />
-                </div>
-                <div
-                    class="flex flex-col text-black-text text-lg min-w-[50%] max-w-[947px] px-[5%]"
-                >
-                    <p class="hidden md:flex md:flex-col text-start">
-                        Ante la falta de datos robustos, precisos y suficientes
-                        para avanzar hacia una política pública eficiente en el
-                        combate y prevención de las Infecciones Asociadas a la
-                        Atención de la Salud y la resistencia a los
-                        antibióticos, hoy tiene todo sentido sumar las distintas
-                        voces de expertos para que, de manera plural,
-                        transparente y con base en evidencia científica, <strong
-                            class="font-[700]"
-                        >
-                            planteen soluciones para hacer frente a estos 2
-                            problemas, motivo de preocupación mundial.</strong
-                        >
-                    </p>
-                    <div class="flex justify-center mt-12 ">
-                        <Button href="#registro" label="REGÍSTRATE" />
-                    </div>
-                </div>
-            </div>
+        <div class="widget flex flex-col px-4">
+            
+            <ConductorCard fotoConductor={maribel} nombre="Maribel Ramírez Coronel" texto={maribelDescription} />
+            <ConductorCard fotoConductor={jose} nombre="José Luis Cárdenas Tomazic" texto={joseDescription} />
 
-           
         </div>
     </div>
 </section>
