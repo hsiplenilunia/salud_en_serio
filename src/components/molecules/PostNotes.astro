@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+
+/**
+ * Props
+ * notes: Array<{
+ *  title: string;
+ *  image: string;
+ *  alt?: string;
+ * }>
+ */
+
+const { notes = [], backHref = "#noticias" } = Astro.props;
+
+//const sectionStyles = `landing-section bg-purple h-screen w-screen text-center overflow-hidden overflow-y-hidden relative`;
+
+const sectionStyles = `landing-section bg-bg-gray w-screen h-auto md:h-auto flex items-center justify-center pt-[150px] md:pt-[10%] px-8 pb-6`;
+
+const primaryDivStyle =
+  "flex flex-col items-center justify-center  md:h-full lg:h-auto lg:mt-0 w-full";
+
+const backButtonStyle =
+  "flex w-full items-start justify-center h-[10%] mt-0 px-4 py-6";
+
+const notesDivStyle = "flex flex-col md:flex-row md:flex-wrap justify-center";
+
+const cardStyles =
+  "rounded-2xl h-[420px] flex flex-col px-6 pt-10 max-w-[330px] lg:w-[345px] lg:h-[420px] mb-6 md:mx-[26px] md:mb-[52px] bg-gray-card";
+
+const imageBgShape =
+  "w-full min-h-[200px] sm:min-h-[230px] lg:h-[264px] bg-gray-card rounded-xl";
+
+const imageCardStyle =
+  "w-full flex mb-4 min-h-[200px] sm:min-h-[230px] lg:h-[264px]";
+
+const imageUtil = "w-full h-full rounded-xl";
+
+const textStyle = "text-[#3422A0] font-extrabold text-2xl text-left w-full";
+---
+
+<section class={sectionStyles} data-header-color="bg-gray" id="notas">
+  <div class={primaryDivStyle}>
+    <!-- Back -->
+    <div class={backButtonStyle}>
+      <a href={backHref} class="w-full h-full">Atrás</a>
+    </div>
+    <!-- Cards -->
+    <div class={notesDivStyle}>
+      {
+        notes.map((note) => (
+          <article class={cardStyles}>
+            <div class={imageCardStyle}>
+              <div class={imageBgShape}>
+                <img
+                  src={note.image}
+                  alt={note.alt ?? note.title}
+                  class={imageUtil}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <h3 class={textStyle}>{note.title}</h3>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
