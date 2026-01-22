@@ -42,7 +42,14 @@ const textStyle = "text-[#3422A0] font-extrabold text-2xl text-left w-full";
   <div class={primaryDivStyle}>
     <!-- Back -->
     <div class={backButtonStyle}>
-      <a href={backHref} class="w-full h-full">Atrás</a>
+      <a href={backHref} class="flex flex-row items-center gap-2 w-full h-full">
+      <img
+        src="/BackButton.svg"
+        alt="boton"
+        class="w-4 h-4 block"
+        >
+          <span>Atrás</span>
+      </a>
     </div>
     <!-- Cards -->
     <div class={notesDivStyle}>
