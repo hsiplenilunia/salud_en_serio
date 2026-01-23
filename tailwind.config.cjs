@@ -11,7 +11,7 @@ module.exports = {
 				'navy': "#3422A0",
 				'light-gray':"#F2F2F2",
 				'black-text': "#000000",
-				'bg-gray': "#e9e9e9",
+				'bg-gray': "#F2F2F2",
 				'gray-button': "#D6D5D5",
 				'gray-card': "#D9D9D9",
 				'back-gray': "#BABABA",

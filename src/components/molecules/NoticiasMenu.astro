@@ -1,0 +1,36 @@
+---
+const {
+    items = [],
+    icon = "/Vector.svg",
+    sectionId = "noticias",
+} = Astro.props;
+
+const sectionStyles = `landing-section bg-bg-gray w-full min-h-screen flex items-center justify-center px-4 md:px-12`;
+
+const containerStyles = `w-full max-w-4xl flex flex-col gap-6`;
+
+const buttonStyles = `group flex items-center justify-between w-full rounded-xl px-6 py-5 md:px-8 bg-navy text-white transition-colors duration-300 hover:bg-gray-card hover:text-navy`;
+
+const textStyles = `font-extrabold text-xl md:text-3xl`;
+
+const iconWrapper = `flex items-center justify-center w-12 h-12 md:w-14 md:h-14`;
+---
+
+<section class={sectionStyles} id={sectionId} data-header-color="bg-gray">
+    <div class={containerStyles}>
+        {
+            items.map((item) => (
+                <a href={item.href} class={buttonStyles}>
+                <span class={textStyles}>{item.label}</span>
+                <div class={iconWrapper}>
+                    <img
+                        src={icon}
+                        alt="ícono"
+                        class="w-full h-full object-contain transition-colors duration-300 group-hover:invert group-hover:brightness-0 group-hover:saturate-100"
+                    />
+                </div>
+                </a>
+            ))
+        }
+    </div>
+</section>
