@@ -1,47 +1,59 @@
 ---
-import { Image } from "astro:assets";
-import pleniluniaLogo from "../../assets/TextoconPastillaseIconos-01-2048x912.png";
-import Button from "../Button.astro";
-
-//const sectionStyles = `landing-section bg-purple h-screen w-screen text-center overflow-hidden overflow-y-hidden relative`;
-const sectionStyles = `landing-section bg-bg-gray w-screen flex items-center justify-center pt-24 px-8 relative`;
+import PostNotes from '../molecules/PostNotes.astro';
+const notes = [
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  },
+  {
+    title: "Titulo de la nota",
+    image: "/Depositphotos_60086871_XL 1.webp"
+  }
+];
 ---
 
-<section class={sectionStyles} data-header-color={`bg-gray`} id="porque-asistir">
-  <div
-    class="flex flex-col items-center justify-center h-full space-y-8 z-10 relative"
-  >
-    <div
-      class="text-navy text-3xl text-center font-bold uppercase mt-0 md:mt-24 mb-0 md:mb-0"
-    >
-      <h2>¿POR QUÉ ASISTIR?</h2>
-    </div>
-    <div class="flex flex-col px-[10%] text-black-text">
-      <p class="text-center text-lg">
-        Organizado por la iniciativa Hospitales sin Infecciones, es un Foro que
-        suma todas las voces y todas las disciplinas relacionadas con las
-        Infecciones Asociadas a la Atención de la Salud, y resistencia a los
-        antibióticos
-      </p>
-    </div>
-    <div class="w-full flex justify-center">
-      {/* Imagen para pantallas horizontales (aspect-ratio >= 1) */}
-      <div class="w-full">
-        <Image
-          src={pleniluniaLogo}
-          alt="Infografía sobre el Foro"
-          class="w-full h-auto max-w-[1920px] hidden md:block aspect-video"
-          width={1920}
-          loading="lazy"
-        />
-        {/* Imagen para pantallas verticales (aspect-ratio < 1) */}
-        <img
-          src="https://res.cloudinary.com/difrqz0ke/image/upload/v1752887855/TextCompleto-conPastillas_zoh9qm.webp"
-          alt="Infografía sobre el Foro vertical"
-          class="w-full h-auto max-w-[600px] block md:hidden aspect-[3/4]"
-          loading="lazy"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+<PostNotes notes={notes} />

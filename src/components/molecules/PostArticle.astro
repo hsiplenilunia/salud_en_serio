@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    title: string;
+    image: string;
+    imageAlt?: string;
+    backHref?: string;
+}
+
+const {
+    title,
+    image,
+    imageAlt = title,
+    backHref = "#noticias",
+} = Astro.props as Props;
+
+const sectionStyles ="landing-section bg-bg-gray w-full min-h-[100dvh] pt-24 px-4 md:px-10 lg:px-16 xl:px-24 relative";
+---
+
+<section class={sectionStyles}>
+    <div class="w-full flex justify-center px-4 md:px-0">
+        <article
+        class="w-full flex flex-col gap-3 md:max-w-[64rem] lg:max-w-[80rem] xl:max-w-[92rem]"
+    >
+        <a
+            href={backHref}
+            class="flex flex-row items-center gap-2 text-sm text-back-gray hover:text-gray-900"
+        >
+            <img src="/BackButton.svg" alt="botón atrás" class="w-4 h-4 block" />
+            <span>Atrás</span>
+        </a>
+
+        <!-- Imagen principal -->
+        <div class="w-full overflow-hidden rounded-2xl aspect-[1324/478]">
+        <img
+            src={image}
+            alt={imageAlt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+        />
+        </div>
+
+        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-navy">
+            {title}
+        </h1>
+
+        <div class="max-w-none text-xl md:text-base lg:text-lg">
+            <slot />
+        </div>
+        </article>
+    </div>
+</section>
