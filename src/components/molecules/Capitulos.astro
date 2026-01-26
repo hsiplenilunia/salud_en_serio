@@ -1,0 +1,47 @@
+---
+/**
+ * Props
+ * chapters: Array<{
+ *   image: string;
+ *   alt?: string;
+ * }>
+ */
+
+const { chapters = [] } = Astro.props;
+---
+
+<section
+    id="capitulos"
+    class="w-screen bg-bg-gray px-6 pt-[150px] pb-12"
+>
+    <div
+    class="grid grid-cols-1 gap-y-8 justify-items-center md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    {chapters.map((chapter) => (
+        <article
+            class="relative w-[292px] h-[396px] bg-gray-card rounded-2xl">
+        <div class="absolute top-[20px] left-[17px] right-[17px] bottom-[53px]">
+            <img
+                src={chapter.image}
+                alt={chapter.alt ?? "Capítulo"}
+                loading="lazy"
+                class="w-full h-full object-cover rounded-xl"
+            />
+        </div>
+        <button
+            aria-label="Reproducir capítulo"
+            class="absolute w-[34px] h-[34px] bottom-[16px] right-[34px] flex items-center justify-center z-10">
+            <img
+                src="/Play1.svg"
+                alt=""
+                class="absolute inset-0 w-full h-full"
+            />
+            <img
+                src="/Play2.svg"
+                alt=""
+                class="absolute w-[12px] h-[12px]"
+            />
+        </button>
+        </article>
+    ))}
+    </div>
+</section>
