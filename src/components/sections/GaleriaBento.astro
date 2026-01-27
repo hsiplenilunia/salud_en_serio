@@ -1,0 +1,18 @@
+---
+import BentoGrid from "../molecules/BentoGrid.astro";
+
+const items = [
+  { img: "/table.webp", isLarge: false },
+  { img: "/Doc_Galeria.webp", isLarge: true },
+  { img: "/table.webp", isLarge: false },
+  { img: "/Doc_Galeria.webp", isLarge: true },
+  { img: "/table.webp", isLarge: false },
+  { img: "/table.webp", isLarge: false },
+];
+---
+
+<BentoGrid
+  items={items}
+  title="Multimedia"
+  backHref="#noticias"
+/>

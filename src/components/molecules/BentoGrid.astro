@@ -1,0 +1,69 @@
+---
+interface BentoItem {
+    img: string;
+    isLarge?: boolean;
+}
+
+interface Props {
+    items: BentoItem[];
+    backHref?: string;
+    title?: string;
+    gridWidth?: string;
+    sectionId?: string;
+}
+
+const {
+    items,
+    backHref = "#noticias",
+    title = "Multimedia",
+    gridWidth = "max-w-[1104px]",
+    sectionId = "multimedia",
+} = Astro.props;
+---
+
+<section id={sectionId} class="w-full flex flex-col items-center pt-[93px] pb-10 px-4 bg-bg-gray min-h-screen">
+    <div class={`w-full ${gridWidth} relative flex flex-col mb-[24px]`}>
+        <h2 class="text-navy text-2xl font-extrabold self-center">
+        {title}
+        </h2>
+
+        <a
+        href={backHref}
+        class="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-base text-back-gray transition-colors"
+        >
+        <img src="/BackButton.svg" alt="botón atrás" class="w-4 h-4 block" />
+        <span>Atrás</span>
+        </a>
+    </div>
+
+    <div
+        class={`grid grid-cols-1 md:grid-cols-4 gap-[22px] ${gridWidth} w-full`}
+        style="grid-auto-rows: 335px;"
+    >
+        {items.map((item) => (
+        <div
+            class={`
+            relative bg-gray-card rounded-xl overflow-hidden group
+            ${item.isLarge ? 'md:col-span-2' : 'md:col-span-1'}
+            w-full h-[335px]
+            `}
+        >
+            <div
+            class={`
+                w-full h-full
+                ${item.isLarge ? 'p-[6px]' : 'py-[6px] px-[5px]'}
+            `}
+            >
+            <div class="w-full h-full rounded-xl overflow-hidden">
+                <img
+                src={item.img}
+                alt="Multimedia"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                />
+            </div>
+            </div>
+        </div>
+        ))}
+    </div>
+</section>
