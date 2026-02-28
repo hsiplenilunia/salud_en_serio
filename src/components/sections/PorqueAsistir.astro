@@ -1,59 +1,45 @@
 ---
 import PostNotes from '../molecules/PostNotes.astro';
-const notes = [
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  },
-  {
-    title: "Titulo de la nota",
-    image: "/Depositphotos_60086871_XL 1.webp"
-  }
-];
+
+let allPosts: any[] = [];
+try {
+  allPosts = await Astro.glob(`../../content/blog/*.{md,mdx}`);
+} catch (e) {
+  allPosts = [];
+}
+
+const todayMs = Date.now();
+function publishTimeMs(post: any) {
+  const front = post?.frontmatter ?? {};
+  const pd = front.publishDate ?? front.date ?? 0;
+  const d = new Date(pd);
+  return Number.isFinite(d.getTime()) ? d.getTime() : 0;
+}
+
+function slugFromFile(file: string) {
+  return file.split('/').pop()?.replace(/\.(md|mdx)$/, '') ?? '';
+}
+
+const postsList = (allPosts ?? [])
+  .filter(Boolean)
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter ?? {},
+    publishTime: publishTimeMs(post),
+  }))
+  .filter((post) => !(post.frontmatter?.draft === true))
+  .filter((post) => post.publishTime <= todayMs)
+  .sort((a, b) => b.publishTime - a.publishTime);
+
+const notes = postsList.map((post) => {
+  const slug = slugFromFile(post.file);
+  return {
+    title: post.frontmatter?.title ?? slug,
+    image: post.frontmatter?.image ?? '/DoctorPost.webp',
+    alt: post.frontmatter?.imageAlt ?? post.frontmatter?.title ?? slug,
+    href: `/post/${slug}`,
+  };
+});
 ---
 
 <PostNotes notes={notes} />
