@@ -2,18 +2,26 @@
 import { Image } from "astro:assets";
 
 interface Props {
-    title: string;
-    image: string;
+    title?: string;
+    image?: string;
     imageAlt?: string;
     backHref?: string;
+    post?: any;
 }
 
 const {
     title,
     image,
     imageAlt = title,
-    backHref = "#noticias",
+    // default back link should take user to the notes section on the landing page
+    backHref = "/#notas",
+    post,
 } = Astro.props as Props;
+
+const postTitle = post?.frontmatter?.title ?? title;
+const postImage = post?.frontmatter?.image ?? image;
+const postImageAlt = imageAlt ?? postTitle;
+const Content = post?.Content;
 
 const sectionStyles ="landing-section bg-bg-gray w-full min-h-[100dvh] pt-24 px-4 md:px-10 lg:px-16 xl:px-24 relative";
 ---
@@ -31,23 +39,44 @@ const sectionStyles ="landing-section bg-bg-gray w-full min-h-[100dvh] pt-24 px-
             <span>Atrás</span>
         </a>
 
-        <!-- Imagen principal -->
         <div class="w-full overflow-hidden rounded-2xl aspect-[1324/478]">
+        {postImage ? (
+        <img
+            src={postImage}
+            alt={postImageAlt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+        />
+        ) : (
         <img
             src={image}
             alt={imageAlt}
             class="w-full h-full object-cover"
             loading="lazy"
         />
+        )}
         </div>
 
-        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-navy">
-            {title}
-        </h1>
+                <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-navy">
+                        {postTitle}
+                </h1>
 
-        <div class="max-w-none text-xl md:text-base lg:text-lg">
-            <slot />
-        </div>
+                <div class="post-meta flex gap-4 items-center text-sm text-back-gray">
+                    {post?.frontmatter?.date && (
+                        <time class="text-muted">{new Date(post.frontmatter.date).toLocaleDateString()}</time>
+                    )}
+                    {post?.frontmatter?.categories && (
+                        <div class="categories flex gap-2">
+                            {post.frontmatter.categories.map((c: string) => (
+                                <span class="category-tag uppercase text-xs font-semibold">{c}</span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <div class="max-w-none text-xl md:text-base lg:text-lg prose">
+                        {Content ? <Content /> : <slot />}
+                </div>
         </article>
     </div>
 </section>
