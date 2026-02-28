@@ -1,23 +1,73 @@
 ---
 import PostArticle from '../molecules/PostArticle.astro';
+
+const postsProp = (Astro.props as any)?.posts as any[] | undefined;
+let allPosts: any[] = [];
+try {
+  allPosts = await Astro.glob(`../../content/blog/*.{md,mdx}`);
+} catch (e) {
+  allPosts = [];
+}
+
+const todayMs = Date.now();
+
+function publishTimeMs(post: any) {
+  const front = post?.frontmatter ?? {};
+  const pd = front.publishDate ?? front.date ?? 0;
+  const d = new Date(pd);
+  return Number.isFinite(d.getTime()) ? d.getTime() : 0;
+}
+
+let postsList = (postsProp ?? allPosts ?? []).filter(Boolean)
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter ?? {},
+    publishTime: publishTimeMs(post),
+  }))
+  .filter((post) => !(post.frontmatter?.draft === true))
+  .filter((post) => post.publishTime <= todayMs)
+  .sort((a, b) => b.publishTime - a.publishTime)
+  .map((post) => ({
+    ...post,
+    url: `/post/${post.file?.split('/')?.pop()?.replace(`.{md,mdx}`, '')}`,
+    excerpt: post.frontmatter?.excerpt ?? post.frontmatter?.description ?? '',
+  }));
+
+const recentPosts = postsList.slice(0, 5);
+const categories = [...new Set((allPosts || []).flatMap((p: any) => p.frontmatter?.categories || []))];
+const categoryMap: Record<string, any[]> = {};
+categories.forEach((cat) => {
+  categoryMap[cat] = (allPosts || []).filter((p: any) => p.frontmatter?.categories?.includes(cat));
+});
+
+const sortedCategories = Object.entries(categoryMap).sort((a: any, b: any) => {
+  if (b[1].length !== a[1].length) return b[1].length - a[1].length;
+  return a[0].localeCompare(b[0]);
+});
 ---
 
-<PostArticle
-  title="Título de la nota"
-  image="/DoctorPost.webp"
-  backHref="#noticias"
->
-  <p>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi, pariatur?
-  </p>
+{postsList.length > 0 ? (
+  postsList.map((post) => (
+    <PostArticle post={post} backHref="#notas" />
+  ))
+) : (
+  <PostArticle
+    title="Título de la nota"
+    image="/DoctorPost.webp"
+    backHref="#notas"
+  >
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi, pariatur?
+    </p>
 
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia dolorem
-    error, qui nobis dolore fuga minus consequatur animi.
-  </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia dolorem
+      error, qui nobis dolore fuga minus consequatur animi.
+    </p>
 
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum molestiae
-    dolorem dolores excepturi.
-  </p>
-</PostArticle>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum molestiae
+      dolorem dolores excepturi.
+    </p>
+  </PostArticle>
+)}
