@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostArticle from '../../components/molecules/PostArticle.astro';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob(`/src/content/blog/*.{md,mdx}`);
+  const entries = Object.entries(modules);
+
+  return Promise.all(
+    entries.map(async ([path, resolver]) => {
+      const post: any = await resolver();
+
+      const slug = path
+        .split('/')
+        .pop()!
+        .replace(/\.(md|mdx)$/, '');
+
+      return {
+        params: { slug },
+        props: { post }
+      };
+    })
+  );
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={post?.frontmatter?.title ?? "Artículo"}>
+  <PostArticle post={post} backHref="/#notas" />
+</Layout>
