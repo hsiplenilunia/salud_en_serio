@@ -12,6 +12,8 @@ import { Image } from "astro:assets";
 
 const { notes = [], backHref = "#noticias" } = Astro.props;
 
+// Each note object may optionally include a `href` property for linking
+
 //const sectionStyles = `landing-section bg-purple h-screen w-screen text-center overflow-hidden overflow-y-hidden relative`;
 
 const sectionStyles = `landing-section bg-bg-gray w-screen h-auto md:h-auto flex items-center justify-center pt-[150px] md:pt-[10%] px-8 pb-6`;
@@ -54,21 +56,26 @@ const textStyle = "text-[#3422A0] font-extrabold text-2xl text-left w-full";
     <!-- Cards -->
     <div class={notesDivStyle}>
       {
-        notes.map((note) => (
-          <article class={cardStyles}>
-            <div class={imageCardStyle}>
-              <div class={imageBgShape}>
-                <img
-                  src={note.image}
-                  alt={note.alt ?? note.title}
-                  class={imageUtil}
-                  loading="lazy"
-                />
+        notes.map((note) => {
+          const card = (
+            <article class={cardStyles}>
+              <div class={imageCardStyle}>
+                <div class={imageBgShape}>
+                  <img
+                    src={note.image}
+                    alt={note.alt ?? note.title}
+                    class={imageUtil}
+                    loading="lazy"
+                  />
+                </div>
               </div>
-            </div>
-            <h3 class={textStyle}>{note.title}</h3>
-          </article>
-        ))
+              <h3 class={textStyle}>{note.title}</h3>
+            </article>
+          );
+
+          // wrap in link if href provided
+          return note.href ? <a href={note.href}>{card}</a> : card;
+        })
       }
     </div>
   </div>
