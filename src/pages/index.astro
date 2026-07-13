@@ -10,7 +10,7 @@ import Sede from "../components/sections/Sede.astro";
 import Layout from "../layouts/Layout.astro";
 import SiteFooter from "../components/molecules/SiteFooter.astro";
 
-import PorqueAsistir from "../components/sections/PorqueAsistir.astro";
+import NotasEditorial from "../components/sections/NotasEditorial.astro";
 import Speakers from "../components/sections/Speakers.astro";
 import Notas from "../components/sections/Notas.astro";
 import Recursos from "../components/sections/Recursos.astro";
@@ -18,9 +18,10 @@ import Patrocinadores from "../components/sections/Patrocinadores.astro";
 import Agenda from "../components/sections/Agenda.astro";
 import PageFooter from "../components/sections/PageFooter.astro";
 import Video from "../components/sections/Video.astro";
-import SpeakersPaginated from "../components/sections/SpeakersPaginated.astro";
+import SpeakersPodcast from "../components/sections/SpeakersPodcast.astro";
 import Galeria from "../components/sections/Galeria.astro";
 import FloatingWhatsApp from "../components/islands/atoms/FloatingWhatsApp.tsx";
+import QuienesSomos from "../components/sections/QuienesSomos.astro";
 ---
 
 <Layout title="Salud en Serio - Podcast">
@@ -34,18 +35,18 @@ import FloatingWhatsApp from "../components/islands/atoms/FloatingWhatsApp.tsx";
     </div>
 
     <div class="snap-center">
-      <QueEs />
+      <QuienesSomos />
     </div>
     <div class="snap-center">
       <QueEs2 />
     </div>
 
     <div class="snap-center">
-      <PorqueAsistir />
+      <NotasEditorial />
     </div>
     
     <div class="snap-center">
-      <SpeakersPaginated />
+      <SpeakersPodcast />
     </div>
     <!-- <div class="snap-center">
       <Notas />
