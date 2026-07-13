@@ -1,0 +1,71 @@
+---
+/**
+ * Props
+ * chapters: Array<{
+ *   image: string;
+ *   alt?: string;
+ *   spotifyUrl?: string;
+ * }>
+ */
+
+const { chapters = [] }: {
+  chapters?: Array<{
+    image: string;
+    alt?: string;
+    title?: string;
+    spotifyUrl?: string;
+  }>;
+} = Astro.props;
+
+const normalizeSpotifyUrl = (url?: string) => {
+  if (!url) return undefined;
+  const trimmed = url.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+};
+---
+
+<section
+  id="capitulos"
+  class="w-screen bg-bg-gray px-6 pt-[150px] pb-12"
+>
+    <div class="grid grid-cols-1 gap-y-8 justify-items-center md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        {chapters.map((chapter) => {
+            const spotifyUrl = normalizeSpotifyUrl(chapter.spotifyUrl);
+            const title = chapter.title ?? chapter.alt ?? "Capítulo";
+
+            return (
+                <article class="relative w-[292px] h-[396px] overflow-hidden rounded-2xl bg-gray-card shadow-sm">
+                    <img
+                        src={chapter.image}
+                        alt={chapter.alt ?? "Capítulo"}
+                        loading="lazy"
+                        class="absolute inset-0 h-full w-full object-cover"
+                    />
+
+                    <div class="absolute inset-0 bg-slate-950/10" />
+
+                    <div class="absolute inset-x-4 top-4 rounded-2xl bg-white/90 p-4 shadow-sm backdrop-blur-sm">
+                        <p class="text-xs uppercase tracking-[0.28em] text-brand-purple">Podcast</p>
+                        <p class="mt-2 text-sm font-semibold leading-5 text-slate-900">{title}</p>
+                    </div>
+
+                    {spotifyUrl ? (
+                        <a
+                            href={spotifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Abrir capítulo de Spotify: ${title}`}
+                            class="absolute bottom-4 right-4 flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white shadow-lg transition hover:-translate-y-0.5"
+                        >
+                            <img src="/Play2.svg" alt="Play" class="w-[16px] h-[16px]" />
+                        </a>
+                    ) : (
+                        <div class="absolute bottom-4 right-4 flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white/80 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                            sin URL
+                        </div>
+                    )}
+                </article>
+            );
+        })}
+    </div>
+</section>
