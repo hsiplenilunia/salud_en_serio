@@ -13,6 +13,8 @@ const { chapters = [] }: {
     image: string;
     alt?: string;
     title?: string;
+    subtitle?: string;
+    label?: string;
     spotifyUrl?: string;
   }>;
 } = Astro.props;
@@ -22,6 +24,9 @@ const normalizeSpotifyUrl = (url?: string) => {
   const trimmed = url.trim();
   return trimmed.length > 0 ? trimmed : undefined;
 };
+
+const getLabel = (label?: string) => label ?? "Episodio Inaugural";
+
 ---
 
 <section
@@ -34,19 +39,35 @@ const normalizeSpotifyUrl = (url?: string) => {
             const title = chapter.title ?? chapter.alt ?? "Capítulo";
 
             return (
-                <article class="relative w-[292px] h-[396px] overflow-hidden rounded-2xl bg-gray-card shadow-sm">
-                    <img
-                        src={chapter.image}
-                        alt={chapter.alt ?? "Capítulo"}
-                        loading="lazy"
-                        class="absolute inset-0 h-full w-full object-cover"
-                    />
+                <article class="relative w-[292px] h-[396px] overflow-hidden rounded-2xl bg-white shadow-xl shadow-slate-300/50">
+                    <div class="absolute inset-0 bg-gray-card/60" />
 
-                    <div class="absolute inset-0 bg-slate-950/10" />
+                    <div class="absolute inset-x-4 top-4 rounded-2xl bg-white p-5 shadow-sm">
+                        <span class="inline-flex rounded-full bg-navy px-3 py-1 text-[10px] font-bold uppercase tracking-[0.28em] text-white">
+                            {getLabel(chapter.label)}
+                        </span>
+                        <p class="mt-4 text-sm font-semibold leading-6 text-slate-900">{title}</p>
+                        {chapter.subtitle ? (
+                            <p class="mt-3 text-xs uppercase tracking-[0.26em] text-slate-500">{chapter.subtitle}</p>
+                        ) : null}
+                    </div>
 
-                    <div class="absolute inset-x-4 top-4 rounded-2xl bg-white/90 p-4 shadow-sm backdrop-blur-sm">
-                        <p class="text-xs uppercase tracking-[0.28em] text-brand-purple">Podcast</p>
-                        <p class="mt-2 text-sm font-semibold leading-5 text-slate-900">{title}</p>
+                    <div class="absolute inset-x-4 top-[132px] bottom-4 rounded-3xl bg-slate-100 shadow-inner">
+                        <div class="grid h-full grid-cols-12 gap-2 overflow-hidden rounded-3xl">
+                            <div class="col-span-7 bg-slate-900 p-4 text-white">
+                                <p class="text-[10px] uppercase tracking-[0.24em] text-slate-300">Invitado</p>
+                                <p class="mt-2 text-sm font-semibold leading-5">{chapter.alt ?? "Adolfo Rubinstein"}</p>
+                                <p class="mt-2 text-[11px] leading-5 text-slate-400">Ex ministro de salud de la nación, Argentina</p>
+                            </div>
+                            <div class="col-span-5 relative bg-slate-200">
+                                <img
+                                    src={chapter.image}
+                                    alt={chapter.alt ?? "Capítulo"}
+                                    loading="lazy"
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {spotifyUrl ? (
@@ -55,12 +76,12 @@ const normalizeSpotifyUrl = (url?: string) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Abrir capítulo de Spotify: ${title}`}
-                            class="absolute bottom-4 right-4 flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white shadow-lg transition hover:-translate-y-0.5"
+                            class="absolute bottom-5 right-5 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-white shadow-lg transition hover:-translate-y-0.5"
                         >
                             <img src="/Play2.svg" alt="Play" class="w-[16px] h-[16px]" />
                         </a>
                     ) : (
-                        <div class="absolute bottom-4 right-4 flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white/80 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                        <div class="absolute bottom-5 right-5 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-white/80 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
                             sin URL
                         </div>
                     )}
