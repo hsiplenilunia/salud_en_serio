@@ -1,10 +1,10 @@
 export const menu = [
   {
-    name: "Quienes Somos",
+    name: "¿Quienes Somos?",
     link: "##quienes-somos",
   },
   {
-    name: "¿Noticias",
+    name: "Noticias",
     link: "#noticias",
     className: "", // 👈 Ancho y alineación personalizada
   },
