@@ -1,15 +1,15 @@
 export const menu = [
   {
-    name: "Noticias",
-    link: "#noticias",
+    name: "Quienes Somos",
+    link: "##quienes-somos",
   },
   {
-    name: "¿Quiénes somos?",
-    link: "#quienes-somos",
+    name: "¿Noticias",
+    link: "#noticias",
     className: "", // 👈 Ancho y alineación personalizada
   },
   {
-    name: "Capítulos",
+    name: "Capítulos Podcast",
     link: "#capitulos",
   },
 
