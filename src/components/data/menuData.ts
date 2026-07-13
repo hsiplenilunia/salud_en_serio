@@ -1,7 +1,7 @@
 export const menu = [
   {
     name: "¿Quienes Somos?",
-    link: "##quienes-somos",
+    link: "#quienes-somos",
   },
   {
     name: "Noticias",
