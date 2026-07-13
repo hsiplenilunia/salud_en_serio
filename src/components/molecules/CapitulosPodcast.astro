@@ -33,60 +33,48 @@ const getLabel = (label?: string) => label ?? "Episodio Inaugural";
   id="capitulos"
   class="w-screen bg-bg-gray px-6 pt-[150px] pb-12"
 >
-    <div class="grid grid-cols-1 gap-y-8 justify-items-center md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+    <div class="overflow-x-auto pb-6">
+      <div class="flex gap-6 px-2 snap-x snap-mandatory">
         {chapters.map((chapter) => {
-            const spotifyUrl = normalizeSpotifyUrl(chapter.spotifyUrl);
-            const title = chapter.title ?? chapter.alt ?? "Capítulo";
+          const spotifyUrl = normalizeSpotifyUrl(chapter.spotifyUrl);
+          const title = chapter.title ?? "Capítulo";
 
-            return (
-                <article class="relative w-[292px] h-[396px] overflow-hidden rounded-2xl bg-white shadow-xl shadow-slate-300/50">
-                    <div class="absolute inset-0 bg-gray-card/60" />
+          return (
+            <article class="snap-start min-w-[320px] max-w-[320px] rounded-[32px] bg-white p-5 shadow-xl shadow-slate-300/50 ring-1 ring-slate-200">
+              <div class="mb-4">
+                <span class="inline-flex rounded-full bg-navy px-3 py-1 text-[10px] font-bold uppercase tracking-[0.28em] text-white">
+                  {getLabel(chapter.label)}
+                </span>
+                <h3 class="mt-4 text-lg font-semibold leading-6 text-slate-900">{title}</h3>
+                {chapter.subtitle ? (
+                  <p class="mt-2 text-sm leading-5 text-slate-500">{chapter.subtitle}</p>
+                ) : null}
+              </div>
 
-                    <div class="absolute inset-x-4 top-4 rounded-2xl bg-white p-5 shadow-sm">
-                        <span class="inline-flex rounded-full bg-navy px-3 py-1 text-[10px] font-bold uppercase tracking-[0.28em] text-white">
-                            {getLabel(chapter.label)}
-                        </span>
-                        <p class="mt-4 text-sm font-semibold leading-6 text-slate-900">{title}</p>
-                        {chapter.subtitle ? (
-                            <p class="mt-3 text-xs uppercase tracking-[0.26em] text-slate-500">{chapter.subtitle}</p>
-                        ) : null}
-                    </div>
-
-                    <div class="absolute inset-x-4 top-[132px] bottom-4 rounded-3xl bg-slate-100 shadow-inner">
-                        <div class="grid h-full grid-cols-12 gap-2 overflow-hidden rounded-3xl">
-                            <div class="col-span-7 bg-slate-900 p-4 text-white">
-                                <p class="text-[10px] uppercase tracking-[0.24em] text-slate-300">Invitado</p>
-                                <p class="mt-2 text-sm font-semibold leading-5">{chapter.alt ?? "Adolfo Rubinstein"}</p>
-                                <p class="mt-2 text-[11px] leading-5 text-slate-400">Ex ministro de salud de la nación, Argentina</p>
-                            </div>
-                            <div class="col-span-5 relative bg-slate-200">
-                                <img
-                                    src={chapter.image}
-                                    alt={chapter.alt ?? "Capítulo"}
-                                    loading="lazy"
-                                    class="h-full w-full object-cover"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {spotifyUrl ? (
-                        <a
-                            href={spotifyUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Abrir capítulo de Spotify: ${title}`}
-                            class="absolute bottom-5 right-5 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-white shadow-lg transition hover:-translate-y-0.5"
-                        >
-                            <img src="/Play2.svg" alt="Play" class="w-[16px] h-[16px]" />
-                        </a>
-                    ) : (
-                        <div class="absolute bottom-5 right-5 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-white/80 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                            sin URL
-                        </div>
-                    )}
-                </article>
-            );
+              {spotifyUrl ? (
+                <div class="overflow-hidden rounded-[28px] bg-black">
+                  <iframe
+                    data-testid="embed-iframe"
+                    style="border-radius:12px"
+                    src={spotifyUrl}
+                    width="100%"
+                    height="352"
+                    frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title={`Spotify episodio: ${title}`}
+                    class="block"
+                  />
+                </div>
+              ) : (
+                <div class="flex h-[352px] items-center justify-center rounded-[28px] bg-slate-100 text-sm text-slate-500">
+                  Sin enlace de Spotify
+                </div>
+              )}
+            </article>
+          );
         })}
+      </div>
     </div>
 </section>
